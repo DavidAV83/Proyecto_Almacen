@@ -1,4 +1,4 @@
-<!--Al haber seleccionado la opción "Entradas" de la vista home.php se mostrará esta vista, la cual tiene tres botones de selección
+<!--Al haber seleccionado la opción "ENTRADAS" de la vista home.php se mostrará esta vista, la cual tiene tres botones de selección
 más dos botones "Cerrar sesión" y "Regresar"-->
 <!DOCTYPE html>
 <html lang="en">
