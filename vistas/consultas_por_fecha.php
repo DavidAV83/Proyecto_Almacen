@@ -19,9 +19,9 @@
 
     </div>
     <div class="entrada_codigo">
-        <label for="codigo">DEL DÍA: </label><input type="text" id="codigo" name="codigo" required minlength="1" maxlength="7s" size="10"/>
+        <label for="codigo">DEL DÍA: </label><input type="date" id="codigo" name="codigo" required minlength="1" maxlength="7s" size="10"/>
         <button  id="aceptar_codigo" name="aceptar_codigo">ACEPTAR</button>
-        <label for="codigo">AL DÍA: </label><input type="text" id="codigo" name="codigo" required minlength="1" maxlength="7s" size="10"/>
+        <label for="codigo">AL DÍA: </label><input type="date" id="codigo" name="codigo" required minlength="1" maxlength="7s" size="10"/>
         
     </div>
 
