@@ -177,3 +177,30 @@ body {
     margin-left: 55%;   
     top: -10%;
 }
+.output_section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 5%;
+    margin-left: 3%;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+}
+
+.output_item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.output_item label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.output_item span {
+    padding: 5px 10px;
+    background-color: #DBDBD9;
+    border: 1px solid #C0C0C0;
+    border-radius: 5px;
+}

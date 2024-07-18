@@ -21,3 +21,13 @@
         <button  id="aceptar_codigo_movimiento" name="aceptar_codigo_movimiento">ACEPTAR</button>
         
 </div>
+<div class="output_section">
+    <div class="output_item">
+        <label for="descripcion">DESCRIPCIÓN:</label>
+        <span id="descripcion_output"></span>
+    </div>
+    <div class="output_item">
+        <label for="existencia">EXISTENCIA:</label>
+        <span id="existencia_output"></span>
+    </div>
+</div>
