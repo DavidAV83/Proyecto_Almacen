@@ -18,9 +18,9 @@ más dos botones "Cerrar sesión" y "Regresar"-->
     <button name="regresar"><img src="../img/regresar.png" alt="regresar" id="regresar"></button>
     </div>
     <div class="contenedor_botones">
-      <button name="btn_entrada_a" class="estilo_botones"><h2>ENTRADA POR ALMACÉN</h2></button><br><br>
-      <button name="btn_entrada_cc"  class="estilo_botones"><h2>ENTRADA POR CAJA CHICA</h2></button><br><br>
-      <button name="btn_entrada_oa" class="estilo_botones"><h2>PRÉSTAMO DE OTRA ÁREA</h2></button>
+      <button name="btn_entrada_a" class="estilo_botones" onclick="location.href='entrada_almacen.php'" ><h2>ENTRADA POR ALMACÉN</h2></button><br><br>
+      <button name="btn_entrada_cc" onclick="location.href='entrada_cajachica.php'"  class="estilo_botones"><h2>ENTRADA POR CAJA CHICA</h2></button><br><br>
+      <button name="btn_entrada_oa"  onclick="location.href='entrada_prestamo.php'"  class="estilo_botones"><h2>PRÉSTAMO DE OTRA ÁREA</h2></button>
     </div>
     <div class="contenedor_logo">
       <img src ="../img/metro.png" alt="Metro">

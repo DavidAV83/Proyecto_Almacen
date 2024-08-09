@@ -18,9 +18,9 @@
     <div class="contenedor_botones">
         <h1></h1>
         <h1></h1>
-      <button name="btn_existencia_general" class="estilo_botones"><h2>EXISTENCIA GENERAL</h2></button><br><br>
+      <button name="btn_existencia_general" class="estilo_botones" onclick="location.href='existencia_general.php'"><h2>EXISTENCIA GENERAL</h2></button><br><br>
       <h1></h1>
-      <button name="btn_existencia_articulo"  class="estilo_botones"><h2>EXISTENCIA DE ARTÍCULO</h2></button><br><br>
+      <button name="btn_existencia_articulo"  class="estilo_botones" onclick="location.href='existencia_articulo.php'"><h2>EXISTENCIA DE ARTÍCULO</h2></button><br><br>
       <h1></h1>
       
      

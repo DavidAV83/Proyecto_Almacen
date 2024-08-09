@@ -1,40 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <?php include "../inc/head.php";?>
-    <link rel="stylesheet" href="../css/estilo_plantilla.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Control de Inventarios</title>
+    <link rel="stylesheet" href="../css/estilo_entradas.css">
 </head>
 <body>
-    <div class="barra">
-      <h1>REGISTRO DE ENTRADA</h1>
-      <h1>POR ALMACÉN</h1>
-    </div>
-    <div class="cerrar">
-    <button name="cerrar_sesion"><img src="../img/cerrar_sesion.png" alt="cerrar sesion" id="cerrar"></button>
-    </div>
-    <div class="regresar">
-    <button name="regresar"><img src="../img/regresar.png" alt="regresar" id="regresar"></button>
-    </div>
-    <div class="entrada_codigo">
-        <label for="codigo">CÓDIGO: </label><input type="text" id="codigo" name="codigo" required minlength="1" maxlength="7s" size="10"/>
-        <button id="aceptar_codigo" name="aceptar_codigo">ACEPTAR</button>
-    </div>
-    <div class="formulario_entrada_almacen">
-    <form action="">
-    <label for="num_almacen">No. ALMACÉN: </label><input type="text" id="num_almacen" name="num_almacen" required minlength="1" maxlength="7s" size="10"/>
-    <br>
-    <br>
-    <label for="folio">FOLIO: </label><input type="text" id="folio" name="folio" required minlength="1" maxlength="7s" size="10">
-    <br>
-    <br>
-    <label for="num_vale">No. VALE: </label><input type="text" id="num_vale" name="num_vale" required minlength="1" maxlength="7s" size="10"/>
-    <br>
-    <br>
-    <label for="fecha">FECHA: </label><input type="text" id="fecha" name="fecha" required minlength="1" maxlength="7s" size="10">
-    <br>
-    <br>
-    <label for="fecha">CANTIDAD: </label><input type="text" id="fecha" name="fecha" required minlength="1" maxlength="7s" size="10"/>
-    </form>
-    </div>
+    <header>
+        <h1> REGISTRO DE ENTRADAS POR ALMACÉN </h1>	
+    </header>
+
+    <main>     
+ 
+	<div class="form-container">   
+            <label for="input-text">CÓDIGO: </label>
+            <input type="text" id="input-text">		
+            <button onclick="location.href='404.html'">ACEPTAR</button>
+        </div>                     
+<div class="main-container"> 
+<div class="form-container_2">   
+            <div class="form-group">
+            <label for="no_almacen">No. ALMACÉN:  </label>
+            <input type="text" id="no_almacen">
+        </div>
+        
+        <div class="form-group">
+            <label for="folio_almacen">FOLIO:     </label>
+            <input type="text" id="folio_almacen">
+        </div>
+        
+        <div class="form-group">
+            <label for="no_vale_almacen">No. VALE: </label>
+            <input type="text" id="no_vale_almacen">
+        </div>
+        
+        <div class="form-group">
+            <label for="fecha_almacen">FECHA: </label>            
+	    <input type="date" id="fecha_almacen">
+        </div>
+        
+        <div class="form-group">
+            <label for="cantidad_almacen">CANTIDAD:</label>
+            <input type="text" id="cantidad_almacen">
+        </div>
+</div> 
+
+<div class="form-container_3"> 
+	<div class="form-group">
+            <label for="existencias_almacen">EXISTENCIAS A LA FECHA:</label>  
+	    <input type="text" id="existencias_almacen" value="54321" readonly>          
+        </div>
+	<div class="form-group">
+            <label for="descripcion_almacen">DESCRIPCIÓN:</label> 
+	    <input type="text" id="descripcion_almacen" value="54321" readonly>           
+        </div>
+	<div class="form-group">
+            <label for="costounitario_almacen">COSTO UNITARIO:</label>
+	    <input type="text" id="costounitario_almacen" value="00000" readonly>            
+        </div>
+        <h1></h1>
+	<div>
+		<button onclick="location.href='404.html'">GUARDAR	</button>
+		<button onclick="location.href='404.html'">CANCELAR</button>
+	</div>
+</div>
+</div>
+    </main>   
 </body>
 </html>

@@ -1,0 +1,204 @@
+input{
+    text-transform: uppercase;
+}
+.salida_expediente_codigo{
+    text-align: center;
+    flex-direction: column;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 18px;
+    
+    
+}
+.salida_expediente_codigo input:hover {
+    box-shadow: 0 0 5px gray;
+  }
+.salida_expediente_codigo input:focus {
+    box-shadow: 0 0 5px #3786da;
+
+  }
+.salida_expediente_codigo input{
+    border-radius: 5px;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 18px;
+}
+.salida_expediente_codigo button{
+    background-color: #F86225;
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 8px;
+    padding: 0px 12px;
+    cursor: pointer;
+    border-bottom-width: 10px solid #000;
+    border-radius: 8px; 
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+    width: auto;
+}
+.salida_expediente_codigo button:hover{
+    background-color: #FFA271; 
+}
+.formulario_salida{
+    display: flex;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 18px;
+    margin-top: -100px;
+}
+#fecha_mov{
+    border-radius: 5px;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 16px;
+}
+.formulario_salida button{
+    background-color: #F86225;
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 8px;
+    padding: 0px 12px;
+    cursor: pointer;
+    border-bottom-width: 10px solid #000;
+    border-radius: 8px; 
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+    width: auto;
+}
+.formulario_salida input{
+    border-radius: 5px;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 16px;
+}
+.formulario_salida button:hover{
+    background-color: #FFA271;
+}
+.seleccion select{
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    color: #444;
+    line-height: 1.3;
+    padding: 0px 12px;
+    box-sizing: border-box;
+    margin: auto;
+    border: 1px solid #aaa;
+    box-shadow: 0 1px 0 1px rgba(0,0,0,.03);
+    border-radius: 5px;
+    background-color: #fff;
+    }
+.seleccion select:focus {
+    border-color: #aaa;
+    box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+    box-shadow: 0 0 0 3px -moz-mac-focusring;
+    color: #222; 
+    outline: none;
+  }
+.selec_carro{
+    margin-left: 30%;
+    top: -230px;
+    position: relative;
+}
+.selec_carro button{
+    background-color: #F86225;
+    font-family: 'Open Sans', sans-serif;
+    height: 65px;
+    width: 65px;
+    font-size: 18px;
+    cursor: pointer;
+    outline: none;
+    border-bottom-width: 10px solid #000;
+    border-radius: 8px; 
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+    margin-left: 5px;
+}
+.selec_carro button:hover{
+    background-color: #FFA271; 
+}
+.ultimo_f input {
+    font-palette: #dbdbd9;
+}
+.guardar_cancelar{
+    margin-left: 35%;
+    top: -150px;
+    position: relative;
+
+}
+.guardar_cancelar button{
+    background-color: #F86225;
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 10px;
+    padding: 0px 1px;
+    cursor: pointer;
+    outline: none;
+    border-bottom-width: 10px solid #000;
+    border-radius: 8px; 
+    border-color: black;
+    border-style: solid;
+    border-width: 3px;
+    width: 20%;
+    margin-left: 20px;
+}
+.guardar_cancelar :hover{
+    background-color: #FFA271;
+}
+.formulario_salida_dos{
+    display: flex;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 18px;
+    margin-top: 30px; 
+}
+.formulario_salida_dos input{
+    border-radius: 5px;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 16px;
+}
+.formulario_salida_tres{
+    display: flex;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 18px;
+    margin-top: -270px;
+    margin-left: 65%;
+}
+.formulario_salida_tres input{
+    border-radius: 5px;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 16px;
+}
+.guardar_cancelar_dos{
+    margin-left: 64%;
+    top: 70px;
+    position: relative;
+}
+.guardar_cancelar_dos button{
+    background-color: #F86225;
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 10px;
+    padding: 0px 1px;
+    cursor: pointer;
+    outline: none;
+    border-bottom-width: 10px solid #000;
+    border-radius: 8px; 
+    border-color: black;
+    border-style: solid;
+    border-width: 3px;
+    width: 38%;
+    margin-left: 20px;
+}
+.guardar_cancelar_dos :hover{
+    background-color: #FFA271;
+}
+.formulario_salida_cuatro{
+    display: flex;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 18px;
+    margin-top: -315px;
+    margin-left: 65%;
+}
+.formulario_salida_cuatro input{
+    border-radius: 5px;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 16px;
+}
