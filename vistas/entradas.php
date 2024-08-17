@@ -10,8 +10,12 @@
     <div class="barra">
         <h1>MENÚ PRINCIPAL DE ENTRADAS</h1>
     </div>
-<h1></h1>
-<h1></h1>
+<div class="cerrar" >
+    <button name="cerrar_sesion"><img src="../img/cerrar_sesion.png" alt="cerrar sesion" id="cerrar"></button>
+    </div>
+    <div class="regresar">
+    <button name="regresar" onclick="window.history.back();"><img src="../img/regresar.png" alt="regresar" id="regresar"></button>
+    </div>
 <div class="contenedor_botones">
     <h1></h1>
     <h1></h1>

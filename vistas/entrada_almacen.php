@@ -7,10 +7,18 @@
     <link rel="stylesheet" href="../css/estilo_entradas.css">
 </head>
 <body>
+    <div>
     <header>
         <h1> REGISTRO DE ENTRADAS POR ALMACÉN </h1>	
     </header>
-
+    </div>
+    <div class="cerrar" >
+    <button name="cerrar_sesion"><img src="../img/cerrar_sesion.png" alt="cerrar sesion" id="cerrar"></button>
+    </div>
+    <h1></h1>
+    <div class="regresar">
+    <button name="regresar" onclick="window.history.back();"><img src="../img/regresar.png" alt="regresar" id="regresar"></button>
+    </div>
     <main>     
  
 	<div class="form-container">   

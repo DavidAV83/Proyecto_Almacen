@@ -10,7 +10,13 @@
     <header>
         <h1> REGISTRO DE ENTRADAS POR CAJA CHICA </h1>	
     </header>
-
+    <div class="cerrar" >
+    <button name="cerrar_sesion"><img src="../img/cerrar_sesion.png" alt="cerrar sesion" id="cerrar"></button>
+    </div>
+    <h1></h1>
+    <div class="regresar">
+    <button name="regresar" onclick="window.history.back();"><img src="../img/regresar.png" alt="regresar" id="regresar"></button>
+    </div>
     <main>
     		<div class="form-container">   
             <label for="input-text">CÓDIGO: </label>

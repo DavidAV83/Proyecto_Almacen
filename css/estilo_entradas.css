@@ -104,3 +104,50 @@ input[type="text"]:read-only {
 	    text-align: center;
             background-color: #e9e9e9; /* Color de fondo para campos de salida */	    
         }
+        .cerrar {
+            margin-left: 93.5%;
+            padding: 0; /* Eliminar padding innecesario */
+        }
+        
+        .cerrar button {
+            background-color: #DBDBD9;
+            border: none; /* Eliminar el borde */
+            padding: 0; /* Eliminar padding interno */
+            cursor: pointer;
+            width: 70px; /* Ajustar el tamaño del botón al de la imagen */
+            height: 50px;
+        }
+        
+        .cerrar img {
+            width: 100%; /* Hacer que la imagen ocupe todo el botón */
+            height: 100%;
+        }
+        
+        .cerrar button:hover {
+            background-color: #CFCFCF; /* Cambiar color al hacer hover */
+        }
+        
+        .regresar {
+            margin-right: 93.5%;
+            margin-top: -4.5%;
+            padding: 0; /* Eliminar padding innecesario */
+        }
+        
+        .regresar button {
+            background-color: #DBDBD9;
+            border: none; /* Eliminar el borde */
+            padding: 0; /* Eliminar padding interno */
+            cursor: pointer;
+            width: 70px; /* Ajustar el tamaño del botón al de la imagen */
+            height: 45px;
+        }
+        
+        .regresar img {
+            width: 100%; /* Hacer que la imagen ocupe todo el botón */
+            height: 100%;
+        }
+        
+        .regresar button:hover {
+            background-color: #CFCFCF; /* Cambiar color al hacer hover */
+        }
+        

@@ -204,3 +204,18 @@ body {
     border: 1px solid #C0C0C0;
     border-radius: 5px;
 }
+
+.entrada_codigo_movimiento {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+}
+
+.entrada_codigo_movimiento label {
+    margin-right: 15px;
+}
+
+.entrada_codigo_movimiento select {
+    width: 300px; 
+    height: 40px; 
+    font-size: 18px; 
+}

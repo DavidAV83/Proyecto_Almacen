@@ -15,7 +15,7 @@ más dos botones "Cerrar sesión" y "Regresar"-->
     <button name="cerrar_sesion"><img src="../img/cerrar_sesion.png" alt="cerrar sesion" id="cerrar"></button>
     </div>
     <div class="regresar">
-    <button name="regresar"><img src="../img/regresar.png" alt="regresar" id="regresar"></button>
+    <button name="regresar" onclick="window.history.back();"><img src="../img/regresar.png" alt="regresar" id="regresar"></button>
     </div>
     <div class="contenedor_botones">
       <button name="btn_entregado_trabajador" class="estilo_botones" onclick="location.href='salida_trabajador.php'"><h2>ENTREGADO A TRABAJADOR</h2></button><br><br>
