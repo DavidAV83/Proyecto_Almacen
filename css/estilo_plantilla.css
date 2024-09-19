@@ -38,6 +38,7 @@ body {
     border-style: solid;
     border-width: 3px;
     width: 20%;
+   
 }
 .contenedor_logo img{
     width: 500px;
@@ -115,3 +116,4 @@ body {
 .entrada_codigo button:hover{
     background-color: #FFA271; 
 }
+
