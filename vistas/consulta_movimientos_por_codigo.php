@@ -115,7 +115,7 @@ if (isset($_POST['csv'])) {
     
     <div class="csv_alterno">
         <form action="" method="POST">
-            <button type="submit" id="csv" name="csv">DESCARGAR CSV</button>
+            <button type="submit" id="csv" name="csv">DESCARGAR EXCEL</button>
         </form>
     </div>  
     

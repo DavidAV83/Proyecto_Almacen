@@ -1,0 +1,71 @@
+import random
+
+def generar_cadena_bits(longitud):
+    return [random.choice([0, 1]) for _ in range(longitud)]
+
+def generar_bases(longitud):
+    return [random.choice([0, 1]) for _ in range(longitud)]
+
+def medir_bits(cadena_bits, bases_alice, bases_interceptor):
+    mediciones = []
+    for i in range(len(cadena_bits)):
+        if bases_alice[i] == bases_interceptor[i]:
+            mediciones.append(cadena_bits[i])
+        else:
+            mediciones.append(random.choice([0, 1]))  # Medición incorrecta si las bases no coinciden
+    return mediciones
+
+def comparar_bases(bases_alice, bases_bob):
+    coincidencias = [i for i in range(len(bases_alice)) if bases_alice[i] == bases_bob[i]]
+    return coincidencias
+
+def bb84_simulacion_con_eve():
+    # Solicitar la cantidad de bits, asegurando que sea un número entero positivo
+    while True:
+        try:
+            longitud = int(input("Ingrese la cantidad de bits que quiere en su cadena: "))
+            if longitud > 0:
+                break
+            else:
+                print("Por favor, ingrese un número mayor a 0.")
+        except ValueError:
+            print("Entrada no válida. Ingrese un número entero.")
+    
+    # Alice genera una cadena de bits y selecciona sus bases
+    cadena_bits_alice = generar_cadena_bits(longitud)
+    bases_alice = generar_bases(longitud)
+    
+    print(f"\nCadena de bits generada por Alice: {cadena_bits_alice}")
+    print(f"Bases seleccionadas por Alice: {bases_alice}")
+    
+    # Eve selecciona sus bases y mide los bits de Alice
+    bases_eve = generar_bases(longitud)
+    bits_medidos_eve = medir_bits(cadena_bits_alice, bases_alice, bases_eve)
+    print(f"\nBases seleccionadas por Eve: {bases_eve}")
+    print(f"Bits medidos por Eve (lo que reenvía a Bob): {bits_medidos_eve}")
+    
+    # Eve reenvía los bits medidos a Bob, y Bob selecciona sus propias bases
+    bases_bob = generar_bases(longitud)
+    bits_medidos_bob = medir_bits(bits_medidos_eve, bases_eve, bases_bob)
+    print(f"\nBases seleccionadas por Bob: {bases_bob}")
+    print(f"Bits medidos por Bob: {bits_medidos_bob}")
+    
+    # Alice y Bob comparan las bases
+    coincidencias = comparar_bases(bases_alice, bases_bob)
+    print(f"\nÍndices de coincidencia de bases: {coincidencias}")
+    
+    # Crear la clave compartida entre Alice y Bob
+    clave_alice = [cadena_bits_alice[i] for i in coincidencias]
+    clave_bob = [bits_medidos_bob[i] for i in coincidencias]
+    
+    print(f"\nClave generada por Alice: {clave_alice}")
+    print(f"Clave generada por Bob: {clave_bob}")
+    
+    # Ver si la clave de Alice y Bob es idéntica
+    if clave_alice == clave_bob:
+        print("\nLa clave fue generada correctamente entre Alice y Bob.")
+    else:
+        print("\n¡Se detectaron errores en la clave, Eve podría haber interferido!")
+
+# Ejecutar la simulación con Eve
+bb84_simulacion_con_eve()

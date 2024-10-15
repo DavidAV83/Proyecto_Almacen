@@ -131,7 +131,8 @@ $conexion->close();
         </div>
         <?php if (isset($codigo_movimiento) && !empty($descripcion)): ?>
         <form method="post" action="">
-            <button type="submit" name="descargar_csv">DESCARGAR CSV</button>
+            <button type="submit" name="descargar_csv" style="background-color: #f86225; color: white; padding: 10px 30px; font-weight: bold; border-radius: 5px; font-size: 14px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);border: 2px solid #000;
+                color: #000; font-family: 'Open Sans', sans-serif;">DESCARGAR CSV</button>
         </form>
         <?php endif; ?>
     </div>

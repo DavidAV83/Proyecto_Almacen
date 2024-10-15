@@ -96,7 +96,6 @@ $conexion->close();
         .csv {
             margin-top: 20px;
             text-align: center;
-           
         }
         .vista_csv {
             max-height: 50vh; /* Limita la altura de la tabla */
@@ -105,7 +104,6 @@ $conexion->close();
             padding: 15px;
             box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); /* Sombra alrededor de la tabla */
             border-radius: 8px; /* Bordes redondeados */
-            
         }
         table {
             width: 100%;
@@ -172,16 +170,14 @@ $conexion->close();
         </div>
 
         <div class="csv">
-            <button id="csv" name="csv" type="submit" style="background-color: #f86225; color: white; padding: 10px 30px; font-weight: bold; border-radius: 5px; font-size: 14px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); border: 2px solid #000;
-            color: #000; font-family: 'Open Sans', sans-serif;">
+            <button id="csv" name="csv" type="submit" style="background-color: #f86225; color: white; padding: 10px 30px; font-weight: bold; border-radius: 5px; font-size: 14px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);">
                 ACEPTAR
             </button>
         </div>
 
         <?php if (isset($_SESSION['csv_data']) && count($_SESSION['csv_data']) > 0): ?>
             <div class="csv">
-                <button id="descargar" type="submit" name="descargar_csv" style="background-color: #f86225; color: white; padding: 10px 30px; font-weight: bold; border-radius: 5px; font-size: 14px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);border: 2px solid #000;
-                color: #000; font-family: 'Open Sans', sans-serif;">
+                <button id="descargar" type="submit" name="descargar_csv" style="background-color: #f86225; color: white; padding: 10px 30px; font-weight: bold; border-radius: 5px; font-size: 14px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);">
                     DESCARGAR EXCEL
                 </button>
             </div>
@@ -213,3 +209,4 @@ $conexion->close();
     <?php endif; ?>
 </body>
 </html>
+
