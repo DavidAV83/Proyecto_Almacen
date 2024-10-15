@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+if (isset($_SESSION['usuario'])) {
+    // La sesión ya está iniciada, redirige al usuario a la página de inicio
+    header("Location: /vistas/home.php");
+    exit;
+}
+
 class Conexion {
     public $conexion;
 
@@ -37,7 +43,12 @@ if (isset($_POST["acep"])) {
         $sql = $conexion->query("SELECT * FROM personal_oficina WHERE expediente = '$expediente'");
         
         if ($sql && $datos = $sql->fetch_object()) {
+            // Inicia la sesión
+            session_start();
+            $_SESSION['usuario'] = $expediente;
+            
             header("Location: /vistas/home.php");
+            header("Cache-Control: no-cache, no-store, must-revalidate");
             exit;
         } else {
             $mensaje = "No se encontró el expediente.";
@@ -45,6 +56,7 @@ if (isset($_POST["acep"])) {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>

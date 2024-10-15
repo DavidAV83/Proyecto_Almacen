@@ -1,4 +1,12 @@
-<!--Esta vista será la primera que aparecerá al ingresar una clave correcta en el login.php-->
+<?php
+session_start();
+
+if (!isset($_SESSION['usuario'])) {
+    header("Location: ../index.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +19,25 @@
       <h1>ACTUALIZACIONES</h1>
     </div>
     <div class="cerrar">
-    <button name="cerrar_sesion"><img src="../img/cerrar_sesion.png" alt="cerrar sesion" id="cerrar"></button>
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+            <button name="cerrar_sesion" type="submit"><img src="../img/cerrar_sesion.png" alt="cerrar sesion" id="cerrar"></button>
+        </form>
+        <?php
+        if (isset($_POST['cerrar_sesion'])) {
+            // Destruye la sesión
+            session_destroy();
+            
+            // Establece las cabeceras HTTP para evitar la caché
+            header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+            header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+            header('Cache-Control: no-store, no-cache, must-revalidate');
+            header('Pragma: no-cache');
+            
+            // Redirige a index.php
+            header('Location: ../index.php');
+            exit;
+        }
+        ?>
     </div>
     <div class="contenedor_botones">
       <button name="btn_consultas"  onclick="location.href='menu_consultas.php'"  class="estilo_botones"><h2>CONSULTAS</h2></button><br><br>
