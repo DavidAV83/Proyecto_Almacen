@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 
@@ -95,6 +96,7 @@ $conexion->close();
         .csv {
             margin-top: 20px;
             text-align: center;
+           
         }
         .vista_csv {
             max-height: 50vh; /* Limita la altura de la tabla */
@@ -103,6 +105,7 @@ $conexion->close();
             padding: 15px;
             box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); /* Sombra alrededor de la tabla */
             border-radius: 8px; /* Bordes redondeados */
+            
         }
         table {
             width: 100%;
@@ -121,6 +124,18 @@ $conexion->close();
         tr:nth-child(even) {
             background-color: #f9f9f9; /* Fondo gris claro para filas pares */
         }
+        button#csv, button#descargar {
+            background-color: #f86225; /* Color naranja */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button#csv:hover, button#descargar:hover {
+            background-color: #db5b20; /* Color ligeramente más oscuro para hover */
+        }
     </style>
 </head>
 <body>
@@ -128,7 +143,7 @@ $conexion->close();
         <h1>CONSULTAS POR FECHA</h1>
     </div>
     <div class="cerrar">
-        <button name="cerrar_sesion"><img src="../img/cerrar_sesion.png" alt="cerrar sesión" id="cerrar"></button>
+        <button name="cerrar_sesion"><img src="../img/cerrar_sesion.png" alt="cerrar sesión" id="cerrar"></button> 
     </div>
     <div class="regresar">
         <button name="regresar" onclick="window.history.back();"><img src="../img/regresar.png" alt="regresar" id="regresar"></button>
@@ -157,8 +172,20 @@ $conexion->close();
         </div>
 
         <div class="csv">
-            <button id="csv" name="csv" type="submit">VER PREVISUALIZACIÓN</button>
+            <button id="csv" name="csv" type="submit" style="background-color: #f86225; color: white; padding: 10px 30px; font-weight: bold; border-radius: 5px; font-size: 14px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); border: 2px solid #000;
+            color: #000; font-family: 'Open Sans', sans-serif;">
+                ACEPTAR
+            </button>
         </div>
+
+        <?php if (isset($_SESSION['csv_data']) && count($_SESSION['csv_data']) > 0): ?>
+            <div class="csv">
+                <button id="descargar" type="submit" name="descargar_csv" style="background-color: #f86225; color: white; padding: 10px 30px; font-weight: bold; border-radius: 5px; font-size: 14px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);border: 2px solid #000;
+                color: #000; font-family: 'Open Sans', sans-serif;">
+                    DESCARGAR EXCEL
+                </button>
+            </div>
+        <?php endif; ?>
     </form>
 
     <?php if (isset($_SESSION['csv_data']) && count($_SESSION['csv_data']) > 0): ?>
@@ -182,9 +209,6 @@ $conexion->close();
                     <?php endforeach; ?>
                 </tbody>
             </table>
-            <form action="" method="POST">
-                <button type="submit" name="descargar_csv">DESCARGAR CSV</button>
-            </form>
         </div>
     <?php endif; ?>
 </body>

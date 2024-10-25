@@ -110,48 +110,49 @@
                 <label for="ultimo_f">ULTIMO FOLIO CAPUTURADO: </label><input type="text" name="ultimo_f" id="ultimo_f"
                     disabled>
             </div>
-        </form>
+        
     </div>
     <div class="selec_carro">
         <div class="carro-cuadro">
-            <input type="text" class="carro-input" name="carro_uno" disabled>
-            <input type="checkbox" class="carro-checkbox" name="carro_1">
+            <input type="checkbox" class="carro-checkbox" name="carro_1" value="M">
+            <label for="carro_1">1</label>
         </div>
         <div class="carro-cuadro">
-            <input type="text" class="carro-input" name="carro_dos" disabled>
-            <input type="checkbox" class="carro-checkbox" name="carro_2">
+            <input type="checkbox" class="carro-checkbox" name="carro_2" value="R">
+            <label for="carro_2">2</label>
         </div>
         <div class="carro-cuadro">
-            <input type="text" class="carro-input" name="carro_tres" disabled>
-            <input type="checkbox" class="carro-checkbox" name="carro_3">
+            <input type="checkbox" class="carro-checkbox" name="carro_3" value="N">
+            <label for="carro_3">3</label>
         </div>
         <div class="carro-cuadro">
-            <input type="text" class="carro-input" name="carro_cuatro" disabled>
-            <input type="checkbox" class="carro-checkbox" name="carro_4">
+            <input type="checkbox" class="carro-checkbox" name="carro_4" value="N1">
+            <label for="carro_4">4</label>
         </div>
         <div class="carro-cuadro">
-            <input type="text" class="carro-input" name="carro_cinco" disabled>
-            <input type="checkbox" class="carro-checkbox" name="carro_5">
+            <input type="checkbox" class="carro-checkbox" name="carro_5" value="PR">
+            <label for="carro_5">5</label>
         </div>
         <div class="carro-cuadro">
-            <input type="text" class="carro-input" name="carro_seis" disabled>
-            <input type="checkbox" class="carro-checkbox" name="carro_6">
+            <input type="checkbox" class="carro-checkbox" name="carro_6" value="N2">
+            <label for="carro_6">6</label>
         </div>
         <div class="carro-cuadro">
-            <input type="text" class="carro-input" name="carro_siete" disabled>
-            <input type="checkbox" class="carro-checkbox" name="carro_7">
+            <input type="checkbox" class="carro-checkbox" name="carro_7" value="N3">
+            <label for="carro_7">7</label>
         </div>
         <div class="carro-cuadro">
-            <input type="text" class="carro-input" name="carro_ocho" disabled>
-            <input type="checkbox" class="carro-checkbox" name="carro_8">
+            <input type="checkbox" class="carro-checkbox" name="carro_8" value="R1">
+            <label for="carro_8">8</label>
         </div>
         <div class="carro-cuadro">
-            <input type="text" class="carro-input" name="carro_nueve" disabled>
-            <input type="checkbox" class="carro-checkbox" name="carro_9">
+            <input type="checkbox" class="carro-checkbox" name="carro_9" value="M1">
+            <label for="carro_9">9</label>
         </div>
         <label for="select_todo">TODOS<br>LOS CARROS</label>
         <input type="checkbox" id="select_todo">
     </div>
+    </form>
     <div class="guardar_cancelar">
         <button name="guardar">
             <h2>GUARDAR</h2>
@@ -174,6 +175,22 @@
 
             document.body.removeChild(tempSpan);
         }
+        // Añadir eventos keydown para manejar la tecla Enter
+        document.querySelectorAll('input:not([type="checkbox"]), select').forEach(field => {
+            field.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    // Simula el clic en el botón de aceptar correspondiente
+                    if (this.id === 'expediente') {
+                        document.getElementById('aceptar_expediente').click();
+                    } else if (this.id === 'codigo') {
+                        document.getElementById('aceptar_codigo').click();
+                    } else {
+                        pasarAlSiguienteCampo(this);
+                    }
+                }
+            });
+        });
 
         function pasarAlSiguienteCampo(campo) {
             var campos = Array.from(document.querySelectorAll('input:not([type="checkbox"]), select'));
@@ -300,18 +317,26 @@
 
         function actualizarCuadros(data) {
             console.log('Datos recibidos para actualizar cuadros:', data);
-            const cuadros = document.querySelectorAll('.carro-cuadro');
-            const keys = ['M', 'R', 'N', 'N1', 'PR', 'N2', 'N3', 'R1', 'M1'];
 
-            cuadros.forEach((cuadro, index) => {
-                if (index < keys.length) {
-                    const input = cuadro.querySelector('.carro-input');
-                    const checkbox = cuadro.querySelector('.carro-checkbox');
-                    input.value = (data[keys[index]] || '').padStart(3, '0');
-                    checkbox.checked = false;
+            const checkboxes = document.querySelectorAll('.carro-checkbox');
+
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false; // Desmarca todos los checkboxes
+            });
+
+            // Asigna valores a los checkboxes basados en los datos del servidor
+            const valoresDisponibles = [data.M, data.R, data.N, data.N1, data.PR, data.N2, data.N3, data.R1, data.M1];
+
+
+
+            checkboxes.forEach((checkbox, index) => {
+                if (valoresDisponibles[index] !== undefined) {
+                    checkbox.value = valoresDisponibles[index];
+                    checkbox.nextElementSibling.textContent = valoresDisponibles[index] || ''; // Actualiza la etiqueta
                 }
             });
         }
+
 
         document.getElementById('tren').addEventListener('change', function () {
             const trenSeleccionado = this.value;
@@ -343,14 +368,9 @@
                 checkbox.checked = checked;
             });
         });
+       
 
-        document.querySelector('button[name="guardar"]').addEventListener('click', function () {
-            const selectedValues = Array.from(document.querySelectorAll('.carro-cuadro'))
-                .filter(cuadro => cuadro.querySelector('.carro-checkbox').checked)
-                .map(cuadro => cuadro.querySelector('.carro-input').value);
 
-            console.log('Valores seleccionados:', selectedValues);
-        });
 
         document.addEventListener('DOMContentLoaded', function () {
             cargarAreas();
@@ -358,96 +378,75 @@
             cargarUltimoFolio();
         });
 
-        // Añadir eventos keydown para manejar la tecla Enter
-        document.querySelectorAll('input:not([type="checkbox"]), select').forEach(field => {
-            field.addEventListener('keydown', function (e) {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    // Simula el clic en el botón de aceptar correspondiente
-                    if (this.id === 'expediente') {
-                        document.getElementById('aceptar_expediente').click();
-                    } else if (this.id === 'codigo') {
-                        document.getElementById('aceptar_codigo').click();
-                    } else {
-                        pasarAlSiguienteCampo(this);
-                    }
-                }
-            });
-        });
         //
         document.querySelector('button[name="guardar"]').addEventListener('click', function () {
-    // Verificar si todos los campos están llenos
-    const expediente = document.getElementById('expediente').value;
-    const nombre = document.getElementById('nombre').value;
-    const categoria = document.getElementById('categoria').value;
-    const fecha_mov = document.getElementById('fecha_mov').value;
-    const codigo = document.getElementById('codigo').value;
-    const folio = document.getElementById('folio').value;
-    const cantidad = document.getElementById('cantidad').value;
-    const tren = document.getElementById('tren').value;
-    const area = document.getElementById('area').value;
+            // Verificar si todos los campos están llenos
+            const expediente = document.getElementById('expediente').value;
+            const nombre = document.getElementById('nombre').value;
+            const categoria = document.getElementById('categoria').value;
+            const fecha_mov = document.getElementById('fecha_mov').value;
+            const codigo = document.getElementById('codigo').value;
+            const folio = document.getElementById('folio').value;
+            const cantidad = document.getElementById('cantidad').value;
+            const tren = document.getElementById('tren').value;
+            const area = document.getElementById('area').value;
 
-    if (!expediente || !nombre || !categoria || !fecha_mov || !codigo || !folio || !cantidad || !tren || !area) {
-        alert('Por favor llene todos los campos antes de guardar.');
-        return;
-    }
+            if (!expediente || !nombre || !categoria || !fecha_mov || !codigo || !folio || !cantidad || !tren || !area) {
+                alert('Por favor llene todos los campos antes de guardar.');
+                return;
+            }
 
-    if (confirm('¿Estás seguro de guardar estos datos?')) {
-        // Recolectar los datos de los carros seleccionados
-        const carros = ['M', 'R', 'N', 'N1', 'PR', 'N2', 'N3', 'R1', 'M1'];
-        let formData = new FormData();
-        formData.append('expediente', expediente);
-        formData.append('nombre', nombre);
-        formData.append('categoria', categoria);
-        formData.append('fecha_mov', fecha_mov);
-        formData.append('codigo', codigo);
-        formData.append('folio', folio);
-        formData.append('cantidad', cantidad);
-        formData.append('tren', tren);
-        formData.append('area', area);
+            if (confirm('¿Estás seguro(a) de guardar estos datos?')) {
+                // Recolectar los datos de los carros seleccionados
+                const carros = ['carro_1', 'carro_2', 'carro_3', 'carro_4', 'carro_5', 'carro_6', 'carro_7', 'carro_8', 'carro_9'];
+                let formData = new FormData();
+                formData.append('expediente', expediente);
+                formData.append('nombre', nombre);
+                formData.append('categoria', categoria);
+                formData.append('fecha_mov', fecha_mov);
+                formData.append('codigo', codigo);
+                formData.append('folio', folio);
+                formData.append('cantidad', cantidad);
+                formData.append('tren', tren);
+                formData.append('area', area);
 
-        carros.forEach(carro => {
-            const input = document.querySelector(`input[name="${carro}"]`);
-            if (input && input.value && input.parentElement.querySelector('input[type="checkbox"]').checked) {
-                formData.append(carro, input.value);
+                carros.forEach(carro => {
+                    const checkbox = document.querySelector(`input[name="${carro}"]`);
+                    if (checkbox && checkbox.checked) {
+                        formData.append(carro, '1'); // Puedes usar cualquier valor que desees
+                    }
+                });
+
+                fetch('../php/guardar_datos.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            alert('Datos guardados exitosamente.');
+                            // Limpiar formulario, excepto el input ultimo_f
+                            location.reload();
+                        } else {
+                            alert('Error al guardar los datos: ' + data.message);
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
             }
         });
 
-        fetch('../php/guardar_datos.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                alert('Datos guardados exitosamente.');
+
+        document.querySelector('button[name="cancelar"]').addEventListener('click', function () {
+            if (confirm('¿Estás seguro de cancelar la inserción de datos?')) {
                 // Limpiar formulario, excepto el input ultimo_f
-                location.reload();
                 document.querySelectorAll('input:not([type="checkbox"]), select').forEach(field => {
                     if (field.id !== 'ultimo_f') {
                         field.value = '';
                     }
                 });
                 document.querySelectorAll('.carro-checkbox').forEach(checkbox => checkbox.checked = false);
-            } else {
-                alert('Error al guardar los datos: ' + data.message);
-            }
-        })
-        .catch(error => console.error('Error:', error));
-    }
-});
-
-document.querySelector('button[name="cancelar"]').addEventListener('click', function () {
-    if (confirm('¿Estás seguro de cancelar la inserción de datos?')) {
-        // Limpiar formulario, excepto el input ultimo_f
-        document.querySelectorAll('input:not([type="checkbox"]), select').forEach(field => {
-            if (field.id !== 'ultimo_f') {
-                field.value = '';
             }
         });
-        document.querySelectorAll('.carro-checkbox').forEach(checkbox => checkbox.checked = false);
-    }
-});
 
 
     </script>

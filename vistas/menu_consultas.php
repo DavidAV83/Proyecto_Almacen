@@ -9,11 +9,7 @@
       <h1>CONSULTAS</h1>
     </div>
     <div class="cerrar">
-    <form action="../php/cerrar_sesion.php" method="post">
-    <button type="submit" name="cerrar_sesion">
-        <img src="../img/cerrar_sesion.png" alt="cerrar sesión" id="cerrar">
-    </button>
-</form>
+        <button name="cerrar_sesion"><img src="../img/cerrar_sesion.png" alt="cerrar sesion" id="cerrar"></button>
     </div>
     <div class="regresar">
         <button name="regresar" onclick="window.history.back();"><img src="../img/regresar.png" alt="regresar" id="regresar"></button>

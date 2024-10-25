@@ -27,6 +27,7 @@ $tren = $_POST['tren'];
 $area = $_POST['area'];
 
 // Recuperar datos de los carros
+
 $carros = [
     'carro_1' => 'M',
     'carro_2' => 'R',
@@ -41,14 +42,15 @@ $carros = [
 
 $carro_values = array_fill_keys(array_values($carros), null);
 foreach ($carros as $checkbox_name => $campo) {
-    if (isset($_POST[$checkbox_name]) && !empty($_POST[$checkbox_name])) {
-        $carro_values[$campo] = $_POST[$checkbox_name];
+    if (isset($_POST[$checkbox_name]) && $_POST[$checkbox_name] == 'on') {
+        $carro_values[$campo] = $campo; // Asigna el valor del campo correspondiente
     }
 }
 
+
 // Obtener la existencia actual
 $existencia_actual = 0;
-$sql_existencia = "SELECT EXISTENCIA FROM histor WHERE CODIGO = ? ORDER BY FECHA DESC LIMIT 1";
+$sql_existencia = "SELECT EXISTENCIA FROM histor WHERE CODIGO = ? ORDER BY ID DESC LIMIT 1";
 $stmt_existencia = $conn->prepare($sql_existencia);
 $stmt_existencia->bind_param("s", $codigo);
 $stmt_existencia->execute();
@@ -64,7 +66,7 @@ $nueva_existencia = $existencia_actual - $cantidad;
 // Obtener descripción y unidad de medida
 $descripcion = '';
 $unidad_medida = '';
-$sql_info = "SELECT DESCRIPCIO, UNI_MED FROM histor WHERE CODIGO = ? LIMIT 1"; 
+$sql_info = "SELECT DESCRIPCIO, UNI_MED FROM histor WHERE CODIGO = ? AND DESCRIPCIO != '' AND UNI_MED != '' LIMIT 1"; 
 $stmt_info = $conn->prepare($sql_info);
 $stmt_info->bind_param("s", $codigo);
 $stmt_info->execute();
@@ -86,7 +88,7 @@ $stmt_insert = $conn->prepare($sql_insert);
 $stmt_insert->bind_param(
     "sssssssssssssssssssssss",  // 23 's' para 23 parámetros
     $expediente, $nombre, $categoria, $fecha_mov, $fecha_mov, $codigo, $folio, $cantidad, $tren, $area,
-    $carro_values['M'], $carro_values['R'], $carro_values['N'], $carro_values['N1'], $carro_values['PR'],
+    $carro_values['carro_1'], $carro_values['carro_2'], $carro_values['N'], $carro_values['N1'], $carro_values['PR'],
     $carro_values['N2'], $carro_values['N3'], $carro_values['R1'], $carro_values['M1'],
     $salida, $nueva_existencia, $descripcion, $unidad_medida
 );
@@ -94,8 +96,10 @@ $stmt_insert->bind_param(
 if ($stmt_insert->execute()) {
     echo json_encode(['status' => 'success']);
 } else {
+    error_log("Error: " . $stmt_insert->error); // Registra el error en el log
     echo json_encode(['status' => 'error', 'message' => $stmt_insert->error]);
 }
+
 
 $stmt_insert->close();
 $conn->close();

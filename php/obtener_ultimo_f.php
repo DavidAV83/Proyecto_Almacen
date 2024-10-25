@@ -6,18 +6,26 @@ $dbname = 'metro_cdmx';
 $username = 'root';
 $password = 'david123';
 
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// Crea la conexión
+$conn = new mysqli($host, $username, $password, $dbname);
 
-    // Consultar el último registro
-    $stmt = $pdo->query("SELECT * FROM histor ORDER BY FECHA DESC LIMIT 1");
-    $ultimoRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    // Obtener el folio del último registro
-    $ultimoFolio = $ultimoRegistro['FOLIO'] ?? null; // Usamos null si no se encuentra
-
-    echo json_encode(['ultimo_folio' => $ultimoFolio]);
-} catch (PDOException $e) {
-    echo json_encode(['error' => $e->getMessage()]);
+// Verifica la conexión
+if ($conn->connect_error) {
+    die(json_encode(['error' => 'Conexión fallida: ' . $conn->connect_error]));
 }
+
+// Consulta para obtener el último FOLIO
+$sql = "SELECT FOLIO FROM histor ORDER BY ID DESC LIMIT 1";
+$result = $conn->query($sql);
+
+// Verifica si se encontró un resultado
+if ($result && $result->num_rows > 0) {
+    $ultimoFolio = $result->fetch_assoc()['FOLIO'];
+    echo json_encode(['ultimo_folio' => $ultimoFolio]);
+} else {
+    echo json_encode(['ultimo_folio' => null]);
+}
+
+// Cierra la conexión
+$conn->close();
+?>

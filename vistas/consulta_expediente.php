@@ -127,7 +127,7 @@ $conexion->close();
 
     <div class="csv_alterno">
         <form action="" method="POST">
-            <button type="submit" id="csv" name="csv">DESCARGA CSV</button>
+            <button type="submit" id="csv" name="csv">DESCARGA EXCEL</button>
         </form>
     </div>
 

@@ -4,7 +4,7 @@ session_start();
 if (isset($_POST['aceptar_codigo_movimiento'])) {
     // Validar la entrada
     $codigo = $_POST['codigo_movimiento'];
-
+    
     // Realizar la búsqueda en la base de datos
     $conexion = new mysqli("localhost", "root", "david123", "metro_cdmx");
     $conexion->set_charset("utf8");
@@ -23,7 +23,7 @@ if (isset($_POST['aceptar_codigo_movimiento'])) {
 
         // Guardar los datos en la sesión para el CSV
         $_SESSION['csv_data'] = $datos;
-
+        
         // Redirigir para refrescar la página
         header("Location: " . $_SERVER['PHP_SELF']);
         exit();
@@ -60,85 +60,65 @@ if (isset($_POST['csv'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <?php include "../inc/head.php"; ?>
+    <?php include "../inc/head.php";?>
     <link rel="stylesheet" href="../css/estilo_consultas.css">
     <style>
         body {
-            overflow: hidden;
-            /* Evita el desplazamiento de la pantalla */
+            overflow: hidden; /* Evita el desplazamiento de la pantalla */
         }
-
         .vista_csv {
-            max-height: 50vh;
-            /* Limita la altura de la tabla */
-            overflow-y: auto;
-            /* Habilita el desplazamiento solo dentro de la tabla si es necesario */
+            max-height: 50vh; /* Limita la altura de la tabla */
+            overflow-y: auto; /* Habilita el desplazamiento solo dentro de la tabla si es necesario */
             margin-top: 20px;
             padding: 15px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-            /* Sombra alrededor de la tabla */
-            border-radius: 8px;
-            /* Bordes redondeados */
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); /* Sombra alrededor de la tabla */
+            border-radius: 8px; /* Bordes redondeados */
         }
-
         table {
             width: 100%;
-            border-collapse: collapse;
-            /* Unir bordes */
-            background-color: #ffffff;
-            /* Fondo blanco de la tabla */
+            border-collapse: collapse; /* Unir bordes */
+            background-color: #ffffff; /* Fondo blanco de la tabla */
         }
-
-        th,
-        td {
+        th, td {
             padding: 10px;
             text-align: left;
-            border: 1px solid #ddd;
-            /* Bordes grises y delgados */
+            border: 1px solid #ddd; /* Bordes grises y delgados */
         }
-
         th {
-            background-color: #f2f2f2;
-            /* Fondo gris claro para encabezados */
+            background-color: #f2f2f2; /* Fondo gris claro para encabezados */
             font-weight: bold;
         }
-
         tr:nth-child(even) {
-            background-color: #f9f9f9;
-            /* Fondo gris claro para filas pares */
+            background-color: #f9f9f9; /* Fondo gris claro para filas pares */
         }
     </style>
 </head>
-
 <body>
     <div class="barra">
-        <h1>CONSULTAS DE MOVIMIENTOS POR CÓDIGO</h1>
+      <h1>CONSULTAS DE MOVIMIENTOS POR CÓDIGO</h1>
     </div>
     <div class="cerrar">
         <button name="cerrar_sesion"><img src="../img/cerrar_sesion.png" alt="cerrar sesion" id="cerrar"></button>
     </div>
     <div class="regresar">
-        <button name="regresar" onclick="window.history.back();"><img src="../img/regresar.png" alt="regresar"
-                id="regresar"></button>
+        <button name="regresar" onclick="window.history.back();"><img src="../img/regresar.png" alt="regresar" id="regresar"></button>
     </div>
 
     <div class="entrada_codigo_movimiento">
         <form action="" method="POST">
             <label for="codigo">TECLEE EL CÓDIGO: </label>
-            <input type="number" id="codigo_movimiento" name="codigo_movimiento" required minlength="1" maxlength="7"
-                size="10" />
+            <input type="number" id="codigo_movimiento" name="codigo_movimiento" required minlength="1" maxlength="7" size="10"/>
             <button type="submit" id="aceptar_codigo_movimiento" name="aceptar_codigo_movimiento">ACEPTAR</button>
         </form>
     </div>
-
+    
     <div class="csv_alterno">
         <form action="" method="POST">
-            <button type="submit" id="csv" name="csv">DESCARGAR CSV</button>
+            <button type="submit" id="csv" name="csv">DESCARGAR EXCEL</button>
         </form>
-    </div>
-
+    </div>  
+    
     <?php if (isset($_SESSION['csv_data']) && count($_SESSION['csv_data']) > 0): ?>
         <div class="vista_csv">
             <h2>Vista previa de los datos</h2>
@@ -163,5 +143,4 @@ if (isset($_POST['csv'])) {
         </div>
     <?php endif; ?>
 </body>
-
 </html>

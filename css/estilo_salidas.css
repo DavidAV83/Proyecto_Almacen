@@ -205,4 +205,5 @@ input{
 input {
     width: auto; /* Permite que el ancho se ajuste automáticamente */
     box-sizing: content-box; /* Asegura que el padding y border no afecten el ancho */
+    text-transform: uppercase;
 }

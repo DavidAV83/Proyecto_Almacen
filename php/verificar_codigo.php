@@ -16,12 +16,12 @@ if ($conn->connect_error) {
 // Obtén el código enviado desde el frontend
 $codigo = isset($_POST['codigo']) ? $_POST['codigo'] : '';
 
-// Prepara la consulta SQL para obtener la existencia más reciente
+// Prepara la consulta SQL para obtener el registro más reciente
 $sql = "
-    SELECT EXISTENCIA
+    SELECT EXISTENCIA, DESCRIPCIO
     FROM histor
-    WHERE CODIGO = ?
-    ORDER BY FECHA DESC
+    WHERE CODIGO = ? 
+    ORDER BY ID DESC
     LIMIT 1
 ";
 
@@ -32,8 +32,9 @@ $result = $stmt->get_result();
 
 // Verifica si se encontraron resultados
 if ($row = $result->fetch_assoc()) {
-    $existencia = $row['EXISTENCIA'];
-    echo json_encode(['existe' => true, 'existencia' => $existencia]);
+    $existencia = $row['EXISTENCIA']; // Accede a la columna EXISTENCIA
+    $descripcion = $row['DESCRIPCIO'];
+    echo json_encode(['existe' => true, 'existencia' => $existencia, 'descripcion' => $descripcion]);
 } else {
     echo json_encode(['existe' => false, 'mensaje' => 'Código no encontrado']);
 }
