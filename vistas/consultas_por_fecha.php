@@ -1,6 +1,11 @@
-
 <?php
 session_start();
+
+// Verificar si el usuario ha iniciado sesión
+if (!isset($_SESSION['usuario'])) {
+    header("Location: ../index.php");
+    exit;
+}
 
 // Conexión a la base de datos
 $conexion = new mysqli("localhost", "root", "Terry231", "metro_azteca");
@@ -33,7 +38,6 @@ if (isset($_POST['csv'])) {
 
         if ($result->num_rows > 0) {
             $datos = $result->fetch_all(MYSQLI_ASSOC);
-
             // Guardar los datos en la sesión para la vista previa y la descarga
             $_SESSION['csv_data'] = $datos;
         } else {
@@ -71,6 +75,22 @@ if (isset($_POST['descargar_csv'])) {
     }
 }
 
+// Procesar la solicitud de cerrar sesión
+if (isset($_POST['cerrar_sesion'])) {
+    // Destruir la sesión
+    session_destroy();
+    
+    // Establecer las cabeceras HTTP para evitar la caché
+    header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+    header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+    header('Cache-Control: no-store, no-cache, must-revalidate');
+    header('Pragma: no-cache');
+    
+    // Redirigir a index.php
+    header('Location: ../index.php');
+    exit;
+}
+
 $conexion->close();
 ?>
 
@@ -96,7 +116,6 @@ $conexion->close();
         .csv {
             margin-top: 20px;
             text-align: center;
-           
         }
         .vista_csv {
             max-height: 50vh; /* Limita la altura de la tabla */
@@ -105,7 +124,6 @@ $conexion->close();
             padding: 15px;
             box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); /* Sombra alrededor de la tabla */
             border-radius: 8px; /* Bordes redondeados */
-            
         }
         table {
             width: 100%;
@@ -143,29 +161,35 @@ $conexion->close();
         <h1>CONSULTAS POR FECHA</h1>
     </div>
     <div class="cerrar">
-        <button name="cerrar_sesion"><img src="../img/cerrar_sesion.png" alt="cerrar sesión" id="cerrar"></button> 
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+            <button name="cerrar_sesion" type="submit">
+                <img src="../img/cerrar_sesion.png" alt="cerrar sesión" id="cerrar">
+            </button>
+        </form>
     </div>
     <div class="regresar">
-        <button name="regresar" onclick="window.history.back();"><img src="../img/regresar.png" alt="regresar" id="regresar"></button>
+        <button name="regresar" onclick="window.location.href='http://localhost:8000/vistas/menu_consultas.php'">
+            <img src="../img/regresar.png" alt="regresar" id="regresar">
+        </button>
     </div>
 
     <form action="" method="POST">
         <div class="form-container">
             <div class="entrada_codigo">
                 <label for="fecha_inicio">DEL DÍA: </label>
-                <input type="date" id="fecha_inicio" name="fecha_inicio" required minlength="1" maxlength="10" size="10"/>
+                <input type="date" id="fecha_inicio" name="fecha_inicio" value="<?php echo isset($_POST['fecha_inicio']) ? htmlspecialchars($_POST['fecha_inicio']) : ''; ?>" required minlength="1" maxlength="10" size="10"/>
                 <h1></h1>
                 <label for="fecha_fin">AL DÍA: </label>
-                <input type="date" id="fecha_fin" name="fecha_fin" required minlength="1" maxlength="10" size="10"/>
+                <input type="date" id="fecha_fin" name="fecha_fin" value="<?php echo isset($_POST['fecha_fin']) ? htmlspecialchars($_POST['fecha_fin']) : ''; ?>" required minlength="1" maxlength="10" size="10"/>
             </div>
             
             <div class="multiple">
                 <label>
-                    <input type="radio" name="tipo_consulta" value="inv_mensual_actual">
+                    <input type="radio" name="tipo_consulta" value="inv_mensual_actual" <?php echo (isset($_POST['tipo_consulta']) && $_POST['tipo_consulta'] == 'inv_mensual_actual') ? 'checked' : ''; ?>>
                     INV. MENSUAL ACTUAL
                 </label><br>
                 <label>
-                    <input type="radio" name="tipo_consulta" value="entrada_caja_chica">
+                    <input type="radio" name="tipo_consulta" value="entrada_caja_chica" <?php echo (isset($_POST['tipo_consulta']) && $_POST['tipo_consulta'] == 'entrada_caja_chica') ? 'checked' : ''; ?>>
                     ENTRADA POR CAJA CHICA
                 </label>
             </div>

@@ -3,6 +3,22 @@ ini_set('memory_limit', '3G');
 
 session_start();
 
+// Procesar la solicitud de cerrar sesión
+if (isset($_POST['cerrar_sesion'])) {
+    // Destruir la sesión
+    session_destroy();
+    
+    // Establecer las cabeceras HTTP para evitar la caché
+    header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+    header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+    header('Cache-Control: no-store, no-cache, must-revalidate');
+    header('Pragma: no-cache');
+    
+    // Redirigir a index.php
+    header('Location: ../index.php');
+    exit;
+}
+
 // Conexión a la base de datos
 $conexion = new mysqli("localhost", "root", "Terry231", "metro_azteca");
 $conexion->set_charset("utf8");
@@ -11,14 +27,14 @@ if ($conexion->connect_error) {
     die("La conexión falló: " . $conexion->connect_error);
 }
 
-// Obtener todos los datos de la tabla histor para la vista previa y descarga
+// Obtener todos los datos de la tabla histor para la descarga de CSV
 $sql = "SELECT * FROM histor";
 $result = $conexion->query($sql);
 
 if ($result->num_rows > 0) {
     $datos = $result->fetch_all(MYSQLI_ASSOC);
     
-    // Guardar los datos en la sesión para la vista previa y descarga de CSV
+    // Guardar los datos en la sesión para la descarga de CSV
     $_SESSION['csv_data'] = $datos;
 } else {
     echo "No se encontraron registros en la tabla 'histor'.";
@@ -60,31 +76,6 @@ $conexion->close();
         body {
             overflow: hidden; /* Evita el desplazamiento de la pantalla */
         }
-        .vista_csv {
-            max-height: 50vh; /* Limita la altura de la tabla */
-            overflow-y: auto; /* Habilita el desplazamiento solo dentro de la tabla si es necesario */
-            margin-top: 20px;
-            padding: 15px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); /* Sombra alrededor de la tabla */
-            border-radius: 8px; /* Bordes redondeados */
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse; /* Unir bordes */
-            background-color: #ffffff; /* Fondo blanco de la tabla */
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border: 1px solid #ddd; /* Bordes grises y delgados */
-        }
-        th {
-            background-color: #f2f2f2; /* Fondo gris claro para encabezados */
-            font-weight: bold;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9; /* Fondo gris claro para filas pares */
-        }
         .centrado {
             display: flex;
             justify-content: center;
@@ -100,8 +91,8 @@ $conexion->close();
 
     <div class="cerrar">
         <form method="post">
-            <button name="cerrar_sesion">
-                <img src="../img/cerrar_sesion.png" alt="cerrar sesion" id="cerrar">
+            <button name="cerrar_sesion" type="submit">
+                <img src="../img/cerrar_sesion.png" alt="cerrar sesión" id="cerrar">
             </button>
         </form>
     </div>
@@ -117,29 +108,5 @@ $conexion->close();
             <button type="submit" id="csv" name="csv">DESCARGA EXCEL</button>
         </form>
     </div>  
-
-    <?php if (isset($_SESSION['csv_data']) && count($_SESSION['csv_data']) > 0): ?>
-        <div class="vista_csv">
-            <h2>Vista previa de los datos</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <?php foreach (array_keys($_SESSION['csv_data'][0]) as $header): ?>
-                            <th><?php echo htmlspecialchars($header); ?></th>
-                        <?php endforeach; ?>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($_SESSION['csv_data'] as $row): ?>
-                        <tr>
-                            <?php foreach ($row as $column): ?>
-                                <td><?php echo htmlspecialchars($column); ?></td>
-                            <?php endforeach; ?>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-        </div>
-    <?php endif; ?>
 </body>
 </html>

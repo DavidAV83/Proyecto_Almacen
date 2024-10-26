@@ -69,9 +69,25 @@ if (isset($_POST['csv'])) {
         echo "No hay datos para descargar.";
     }
 }
+// Procesar la solicitud de cerrar sesión
+if (isset($_POST['cerrar_sesion'])) {
+    // Destruir la sesión
+    session_destroy();
+    
+    // Establecer las cabeceras HTTP para evitar la caché
+    header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+    header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+    header('Cache-Control: no-store, no-cache, must-revalidate');
+    header('Pragma: no-cache');
+    
+    // Redirigir a index.php
+    header('Location: ../index.php');
+    exit;
+}
 
 $conexion->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -113,10 +129,15 @@ $conexion->close();
         <h1>CONSULTAS DE MOVIMIENTOS POR DESCRIPCIÓN</h1>
     </div>
     <div class="cerrar">
-        <button name="cerrar_sesion"><img src="../img/cerrar_sesion.png" alt="cerrar sesion" id="cerrar"></button>
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+            <button name="cerrar_sesion" type="submit">
+                <img src="../img/cerrar_sesion.png" alt="cerrar sesión" id="cerrar">
+            </button>
+        </form>
     </div>
+    
     <div class="regresar">
-        <button name="regresar" onclick="window.history.back();"><img src="../img/regresar.png" alt="regresar" id="regresar"></button>
+        <button name="regresar" onclick="window.location.href='http://localhost:8000/vistas/menu_consultas.php'"><img src="../img/regresar.png" alt="regresar" id="regresar"></button>
     </div>
     
     <div class="entrada_codigo_movimiento">

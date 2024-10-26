@@ -26,7 +26,7 @@ if (isset($_POST['aceptar_codigo_movimiento'])) {
     if (filter_var($codigo_movimiento, FILTER_VALIDATE_INT) !== false) {
         // Prepara la consulta SQL para obtener la existencia más reciente
         $sql = "
-            SELECT DESCRIPCIO, EXISTENCIA
+            SELECT DESCRIPCIO, EXISTENCIA, CODIGO
             FROM histor
             WHERE CODIGO = ?
             ORDER BY FECHA DESC
@@ -87,8 +87,6 @@ if (isset($_POST['cerrar_sesion'])) {
 $conexion->close();
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -101,11 +99,15 @@ $conexion->close();
     </div>
     <div class="cerrar">
         <form method="post" action="">
-            <button type="submit" name="cerrar_sesion"><img src="../img/cerrar_sesion.png" alt="cerrar sesion" id="cerrar"></button>
+            <button type="submit" name="cerrar_sesion">
+                <img src="../img/cerrar_sesion.png" alt="cerrar sesión" id="cerrar">
+            </button>
         </form>
     </div>
     <div class="regresar">
-        <button name="regresar" onclick="window.history.back();"><img src="../img/regresar.png" alt="regresar" id="regresar"></button>
+        <button name="regresar" onclick="window.location.href='http://localhost:8000/vistas/menu_consultas_al_inventario.php'">
+            <img src="../img/regresar.png" alt="regresar" id="regresar">
+        </button>
     </div>
 
     <div class="entrada_codigo_movimiento">
@@ -118,7 +120,7 @@ $conexion->close();
 
     <div class="output_section">
         <div class="output_item">
-            <label for="descripcion">DESCRIPCIÓN:</label>
+            <label for=" descripcion">DESCRIPCIÓN:</label>
             <span id="descripcion_output">
                 <?php if (isset($descripcion)) echo htmlspecialchars($descripcion); ?>
             </span>
@@ -132,7 +134,7 @@ $conexion->close();
         <?php if (isset($codigo_movimiento) && !empty($descripcion)): ?>
         <form method="post" action="">
             <button type="submit" name="descargar_csv" style="background-color: #f86225; color: white; padding: 10px 30px; font-weight: bold; border-radius: 5px; font-size: 14px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);border: 2px solid #000;
-                color: #000; font-family: 'Open Sans', sans-serif;">DESCARGAR CSV</button>
+                color: #000; font-family: 'Open Sans', sans-serif;">DESCARGAR EXCEL</button>
         </form>
         <?php endif; ?>
     </div>

@@ -18,3 +18,37 @@ Stack trace:
   thrown in D:\GitMetro\Proyecto_Almacen\vistas\consulta_por_descripcion.php on line 148
 [06-Oct-2024 20:09:44 UTC] PHP Warning:  Undefined array key "CODIGO" in D:\GitMetro\Proyecto_Almacen\vistas\existencia_articulo.php on line 61
 [06-Oct-2024 20:09:45 UTC] PHP Warning:  Undefined array key "CODIGO" in D:\GitMetro\Proyecto_Almacen\vistas\existencia_articulo.php on line 61
+[26-Oct-2024 02:17:17 UTC] PHP Warning:  Undefined array key 0 in D:\GitMetro\Proyecto_Almacen\vistas\consultas_por_fecha.php on line 197
+[26-Oct-2024 02:17:17 UTC] PHP Fatal error:  Uncaught TypeError: array_keys(): Argument #1 ($array) must be of type array, null given in D:\GitMetro\Proyecto_Almacen\vistas\consultas_por_fecha.php:197
+Stack trace:
+#0 D:\GitMetro\Proyecto_Almacen\vistas\consultas_por_fecha.php(197): array_keys()
+#1 {main}
+  thrown in D:\GitMetro\Proyecto_Almacen\vistas\consultas_por_fecha.php on line 197
+[26-Oct-2024 03:00:55 UTC] PHP Warning:  Undefined variable $conexion in D:\GitMetro\Proyecto_Almacen\vistas\menu_consultas_al_inventario.php on line 21
+[26-Oct-2024 03:00:55 UTC] PHP Fatal error:  Uncaught Error: Call to a member function close() on null in D:\GitMetro\Proyecto_Almacen\vistas\menu_consultas_al_inventario.php:21
+Stack trace:
+#0 {main}
+  thrown in D:\GitMetro\Proyecto_Almacen\vistas\menu_consultas_al_inventario.php on line 21
+[26-Oct-2024 03:01:06 UTC] PHP Warning:  Undefined variable $conexion in D:\GitMetro\Proyecto_Almacen\vistas\menu_consultas_al_inventario.php on line 21
+[26-Oct-2024 03:01:06 UTC] PHP Fatal error:  Uncaught Error: Call to a member function close() on null in D:\GitMetro\Proyecto_Almacen\vistas\menu_consultas_al_inventario.php:21
+Stack trace:
+#0 {main}
+  thrown in D:\GitMetro\Proyecto_Almacen\vistas\menu_consultas_al_inventario.php on line 21
+[26-Oct-2024 03:01:07 UTC] PHP Warning:  Undefined variable $conexion in D:\GitMetro\Proyecto_Almacen\vistas\menu_consultas_al_inventario.php on line 21
+[26-Oct-2024 03:01:07 UTC] PHP Fatal error:  Uncaught Error: Call to a member function close() on null in D:\GitMetro\Proyecto_Almacen\vistas\menu_consultas_al_inventario.php:21
+Stack trace:
+#0 {main}
+  thrown in D:\GitMetro\Proyecto_Almacen\vistas\menu_consultas_al_inventario.php on line 21
+[26-Oct-2024 03:01:07 UTC] PHP Warning:  Undefined variable $conexion in D:\GitMetro\Proyecto_Almacen\vistas\menu_consultas_al_inventario.php on line 21
+[26-Oct-2024 03:01:07 UTC] PHP Fatal error:  Uncaught Error: Call to a member function close() on null in D:\GitMetro\Proyecto_Almacen\vistas\menu_consultas_al_inventario.php:21
+Stack trace:
+#0 {main}
+  thrown in D:\GitMetro\Proyecto_Almacen\vistas\menu_consultas_al_inventario.php on line 21
+[26-Oct-2024 03:01:09 UTC] PHP Warning:  Undefined variable $conexion in D:\GitMetro\Proyecto_Almacen\vistas\menu_consultas_al_inventario.php on line 21
+[26-Oct-2024 03:01:09 UTC] PHP Fatal error:  Uncaught Error: Call to a member function close() on null in D:\GitMetro\Proyecto_Almacen\vistas\menu_consultas_al_inventario.php:21
+Stack trace:
+#0 {main}
+  thrown in D:\GitMetro\Proyecto_Almacen\vistas\menu_consultas_al_inventario.php on line 21
+[26-Oct-2024 03:02:29 UTC] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in D:\GitMetro\Proyecto_Almacen\vistas\menu_consultas_al_inventario.php on line 7
+[26-Oct-2024 03:03:28 UTC] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in D:\GitMetro\Proyecto_Almacen\vistas\menu_consultas_al_inventario.php on line 7
+[26-Oct-2024 03:03:44 UTC] PHP Warning:  session_destroy(): Trying to destroy uninitialized session in D:\GitMetro\Proyecto_Almacen\vistas\menu_consultas_al_inventario.php on line 7
