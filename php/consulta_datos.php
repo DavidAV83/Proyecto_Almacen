@@ -3,7 +3,7 @@ include 'conexion.php';
 session_start();
 if (isset($_GET['codigo'])) {
     $codigo = $_GET['codigo'];    
-    $sql = "SELECT EXISTENCIA, DESCRIPCIO, COSTO FROM histor WHERE CODIGO = '$codigo' ORDER BY GREATEST(FECHAENT, FECHASAL) DESC LIMIT 1";
+    $sql = "SELECT EXISTENCIA, DESCRIPCIO, COSTO FROM histor WHERE CODIGO = '$codigo' ORDER BY ID DESC LIMIT 1";
 
     $resultado = $conn->query($sql);
 
@@ -13,7 +13,7 @@ if (isset($_GET['codigo'])) {
         echo json_encode([
             "existencia" => $fila['EXISTENCIA'],
             "descripcion" => $fila['DESCRIPCIO'],
-            "costo" => $fila['COSTO']	    
+            "costo" => !empty($fila['COSTO']) ? $fila['COSTO'] : 0    
         ]);
 	$existencia = $fila['EXISTENCIA'];
     } else {        

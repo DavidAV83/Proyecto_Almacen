@@ -21,7 +21,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['nombre'])) {
 
 if ($codigo = $_SESSION['codigo']) {   
     
-    $sql = "SELECT EXISTENCIA, DESCRIPCIO, COSTO, UNI_MED, CANSAL, FECHASAL, FECHA, CATEGO, FOLIO, CANTIDAD, COSTO, FACTURA, OBSERVA, ESTABLE, NO_VALE, SECC FROM histor WHERE CODIGO = '$codigo' ORDER BY GREATEST(FECHAENT, FECHASAL) DESC LIMIT 1";
+    $sql = "SELECT EXISTENCIA, DESCRIPCIO, COSTO, UNI_MED, CANSAL, FECHASAL, FECHA, CATEGO, FOLIO, CANTIDAD, COSTO, FACTURA, OBSERVA, ESTABLE, NO_VALE, SECC FROM histor WHERE CODIGO = '$codigo' ORDER BY ID DESC LIMIT 1";
 
     $resultado = $conn->query($sql);
 
@@ -98,7 +98,7 @@ if ($result->num_rows > 0) {
 
 
 } else {
-    echo json_encode(["error" => "No se ha proporcionado un código."]);
+    echo "No se ha proporcionado un código.";
 }
 
 } else {
