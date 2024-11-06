@@ -126,7 +126,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['nombre'])) {
         </div>
         <h1></h1>
 	<div>
-		<button type="button" onclick="enviarDatos()">GUARDAR: </button>
+		<button type="button" onclick="enviarDatos(); obtenerDatos()">GUARDAR: </button>
 		<button onclick="location.href='404.html'">CANCELAR</button>
 	</div>
 </div>
